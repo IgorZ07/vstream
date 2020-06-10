@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
      mouse.pos.y = e.clientY / height;
      mouse.move = true;
   };
+
   // draw line received from server
  socket.on('draw_line', (data) => {
      let line = data.line;
@@ -36,3 +37,17 @@ document.addEventListener("DOMContentLoaded", () => {
      context.lineTo(line[1].x * width, line[1].y * height);
      context.stroke();
   });
+  
+  // main loop, running every 25ms
+  const mainLoop = () => {
+     // check if the user is drawing
+     if (mouse.click && mouse.move && mouse.pos_prev) {
+        // send line to to the server
+        socket.emit('draw_line', { line: [ mouse.pos, mouse.pos_prev ] });
+        mouse.move = false;
+     }
+     mouse.pos_prev = {x: mouse.pos.x, y: mouse.pos.y};
+     setTimeout(mainLoop, 25);
+  }
+  mainLoop();
+});
