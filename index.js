@@ -13,6 +13,9 @@ app.get('/', (req, res) => {
   console.log('object');
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+const wCap = new cv.VideoCapture(2);
+wCap.set(cv.CAP_PROP_FRAME_HEIGHT, 700);
+wCap.set(cv.CAP_PROP_FRAME_WIDTH, 500);
 
 setInterval(() => {
   console.log(wCap);
