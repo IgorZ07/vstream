@@ -33,6 +33,11 @@ io.on('connection', (socket) => {
   for (var i in lineHistory) {
     socket.emit('draw_line', { line: lineHistory[i] } );
   };
+  socket.on('draw_line', (data) => {
+    console.log('draw');
+    lineHistory.push(data.line);
+    io.emit('draw_line', { line: data.line });
+  });
 const PORT = process.env.PORT || 3000; 
 
 http.listen(PORT, () => {
