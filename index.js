@@ -10,21 +10,20 @@ app.use("/static", express.static('./static/'))
 //Video streaming
 const FPS = 1;
 
-app.get('/', (req, res) => {
-  console.log('object');
-  res.sendFile(path.join(__dirname, 'index.html'));
-});
 const wCap = new cv.VideoCapture(2);
 wCap.set(cv.CAP_PROP_FRAME_HEIGHT, 700);
 wCap.set(cv.CAP_PROP_FRAME_WIDTH, 500);
 
 setInterval(() => {
-  console.log(wCap);
-  wCap.open(0);
   const frame = wCap.read();
   const image = cv.imencode('.jpg', frame).toString('base64')
   io.emit('image', image);
 }, 1000 / FPS);
+
+// Router
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
 
 const PORT = process.env.PORT || 3000; 
 
