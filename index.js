@@ -6,6 +6,8 @@ const io = require('socket.io')(http);
 
 const wCap = new cv.VideoCapture(0);
 
+//Video streaming
+const FPS = 1;
 
 app.get('/', (req, res) => {
   console.log('object');
@@ -17,8 +19,8 @@ setInterval(() => {
   wCap.open(0);
   const frame = wCap.read();
   const image = cv.imencode('.jpg', frame).toString('base64')
-  io.emit('image', 'image');
-}, 1000)
+  io.emit('image', image);
+}, 1000 / FPS);
 
 const PORT = process.env.PORT || 3000; 
 
