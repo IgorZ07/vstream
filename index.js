@@ -38,6 +38,16 @@ io.on('connection', (socket) => {
     lineHistory.push(data.line);
     io.emit('draw_line', { line: data.line });
   });
+  socket.on('clean_lines', () => {
+    console.log('clean');
+    lineHistory =[];
+    io.emit('clean_lines')
+  });
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
 const PORT = process.env.PORT || 3000; 
 
 http.listen(PORT, () => {
