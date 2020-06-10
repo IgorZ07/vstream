@@ -13,3 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //   let width   = window.innerWidth;
 //   let height  = window.innerHeight;
   let socket  = io.connect();
+
+  // set canvas to full browser width/height
+  canvas.width = width;
+  canvas.height = height;
