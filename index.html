@@ -4,18 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VStream</title>
+    <link rel="stylesheet" href="static/style.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="static/client.js"></script>
   </head>
   <body>
-    Stream
+    <canvas id="drawing"></canvas>
     <img id="image">
-    <script src="/socket.io/socket.io.js"></script>
+    <button id="clear-btn" onclick="cleanLines()">Clear</button>
     <script>
-      var socket = io.connect('http://localhost:3000');
+      const socket = io();
       socket.on('image', (image) => {
-        
         const imageElem = document.getElementById('image');
-        imageElem.src = `data:image.jpg;base64,${image}`;
+        let img = `data:image.jpg;base64,${image}`;
+        imageElem.style.backgroundImage = `url(${img})`
       })
+      const cleanLines = () => {
+        console.log('clean_lines');
+        socket.emit('clean_lines')
+      }
     </script>
   </body>
 </html>
