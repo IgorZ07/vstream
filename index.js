@@ -22,7 +22,7 @@ setInterval(() => {
 
 // Router
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'static/index.html'));
 });
 
 // Canvas
@@ -47,6 +47,10 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
 });
+
+app.get('*', (req,res) => {
+  res.sendFile(path.join(__dirname, 'static/index.html'))
+})
 
 const PORT = process.env.PORT || 3000; 
 
