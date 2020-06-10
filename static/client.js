@@ -17,3 +17,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // set canvas to full browser width/height
   canvas.width = width;
   canvas.height = height;
+
+  // register mouse event handlers
+  canvas.onmousedown = (e) => { mouse.click = true; };
+  canvas.onmouseup = (e) => { mouse.click = false; };
+
+  canvas.onmousemove = (e) => {
+     // normalize mouse position to range 0.0 - 1.0
+     mouse.pos.x = e.clientX / width;
+     mouse.pos.y = e.clientY / height;
+     mouse.move = true;
+  };
