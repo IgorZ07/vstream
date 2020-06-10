@@ -28,6 +28,11 @@ app.get('/', (req, res) => {
 // Canvas
 let lineHistory = [];
 
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  for (var i in lineHistory) {
+    socket.emit('draw_line', { line: lineHistory[i] } );
+  };
 const PORT = process.env.PORT || 3000; 
 
 http.listen(PORT, () => {
