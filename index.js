@@ -10,7 +10,7 @@ app.use("/static", express.static('./static/'))
 //Video streaming
 const FPS = 1;
 
-const wCap = new cv.VideoCapture(2);
+const wCap = new cv.VideoCapture(0);
 wCap.set(cv.CAP_PROP_FRAME_HEIGHT, 700);
 wCap.set(cv.CAP_PROP_FRAME_WIDTH, 500);
 
