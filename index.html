@@ -1,28 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VStream</title>
-    <link rel="stylesheet" href="static/style.css" />
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="static/client.js"></script>
-  </head>
-  <body>
-    <canvas id="drawing"></canvas>
-    <img id="image">
-    <button id="clear-btn" onclick="cleanLines()">Clear</button>
-    <script>
-      const socket = io();
-      socket.on('image', (image) => {
-        const imageElem = document.getElementById('image');
-        let img = `data:image.jpg;base64,${image}`;
-        imageElem.style.backgroundImage = `url(${img})`
-      })
-      const cleanLines = () => {
-        console.log('clean_lines');
-        socket.emit('clean_lines')
-      }
-    </script>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home page</title>
+</head>
+<body>
+  <p2>Index page</p2>
+  <a href="/stream">Start streaming</a>
+</body>
 </html>

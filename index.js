@@ -21,6 +21,10 @@ setInterval(() => {
 }, 1000 / FPS);
 
 // Router
+app.get('/stream', (req, res) => {
+  res.sendFile(path.join(__dirname, 'stream.html'));
+});
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
