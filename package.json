@@ -2,6 +2,12 @@
   "name": "vstream",
   "version": "1.0.0",
   "description": "video stream with drawing",
+  "env": {
+    "OPENCV4NODEJS_DISABLE_AUTOBUILD": {
+      "required": true,
+      "value": 1
+    }
+  },
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
