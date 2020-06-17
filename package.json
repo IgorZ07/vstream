@@ -26,5 +26,12 @@
   },
   "engines": {
     "node": "12.16.1"
-  }
+  },
+  "buildpacks": [{
+    "url": "starkast/cmake"
+  }, {
+    "url": "https://github.com/onboardiq/heroku16-buildpack-opencv3.git"
+  }, {
+    "url": "heroku/nodejs"
+  }]
 }
